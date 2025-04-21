@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML + CSS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>JokeAPI - Programming Joke</h1>
+    <button id="getProgrammingJokeBtn">Get Programming Joke</button>
+
+    <div id="lineContainer"></div>
+
+    <script>
+      const getProgrammingJokeBtn = document.getElementById(
+        "getProgrammingJokeBtn"
+      );
+      const lineContainer = document.getElementById("lineContainer");
+
+      const apiUrl = "https://v2.jokeapi.dev/joke/Programming?type=single";
+
+      getProgrammingJokeBtn.addEventListener("click", function () {
+        fetch(apiUrl)
+          .then(function responseHandler(response) {
+            return response.json();
+          })
+          .then(function showData(line) {
+            console.log(line);
+            lineContainer.innerHTML = `<br/> ${line.joke}`;
+            // lineContainer.innerHTML =
+          })
+          .catch(function showError(error) {
+            lineContainer.textContent = "An error occured while fetching data.";
+          });
+      });
+    </script>
+  </body>
+</html>
